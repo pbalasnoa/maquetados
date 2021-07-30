@@ -1,0 +1,103 @@
+/*
+  Outside In
+  Composición (position, float, clear, display)
+  Modelo de caja (width, height, margin, padding)
+  Propiedades visuales (color, background, border, box-shadow)
+  Tipografía (font-size, font-family, text-align, text-transform)
+  Miscelánea (cursor, overflow, z-index)
+ */
+:root {
+  --soft-orange: #ffe9d5;
+  --warm-black: #201e1c;
+  --black: #000000;
+  --grey: #bababa;
+  --off-white: #faf8f7;
+  --just-white: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.container {
+  padding-inline: 1rem;
+}
+.header {
+  margin-block: 2rem 1.5rem;
+  padding-inline: 1rem;
+}
+
+.header_navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.inactive {
+  font-size: 1.1rem;
+  color: var(--grey);
+}
+
+.header_title {
+  font-size: 1.8rem;
+}
+
+/*
+  Outside In
+  Composición (position, float, clear, display)
+  Modelo de caja (width, height, margin, padding)
+  Propiedades visuales (color, background, border, box-shadow)
+  Tipografía (font-size, font-family, text-align, text-transform)
+  Miscelánea (cursor, overflow, z-index)
+ */
+.main_card {
+  padding-left: 1rem;
+  padding-block: 1.3rem;
+  background: linear-gradient(
+    90deg,
+    rgba(241, 241, 247, 1) 64%,
+    rgba(221, 221, 226, 1) 100%
+  );
+  border-radius: 0.4rem;
+}
+
+.main_card-bubble {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  padding-block: 0.3rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+}
+
+.main_card-bubble-text {
+  /* 8px */
+  font-size: 0.5rem;
+  font-weight: 500;
+  /* 0.4px */
+  letter-spacing: 0.063rem;
+  text-transform: uppercase;
+}
+
+.main_card_containInfo {
+  width: 70%;
+  /* background-color: yellow; */
+}
+
+.main_card_title {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.main_card_description {
+  font-size: 0.8rem;
+  /* text-align: justify; */
+}

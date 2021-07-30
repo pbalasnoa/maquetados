@@ -1,0 +1,279 @@
+@import "global";
+@import "mixins";
+
+//font-family: 'Karla', sans-serif;
+
+// -------------------------- */
+// $VARIEBALES /
+// -------------------------- */
+$dark-blue: #081430;
+$text: rgba(8, 20, 48, 0.8);
+$blue: #3249bf;
+$background: #fafafa;
+$white: #fff;
+$pale-silver-transparent: rgba(206, 195, 193, 0.4);
+
+$font-Karla: "Karla", sans-serif;
+
+body {
+  font-family: $font-Karla;
+  font-weight: 400;
+  color: $dark-blue;
+  width: 100%;
+  background-color: $background;
+}
+
+.main-title {
+  padding: 2rem 1rem 2.5rem;
+  font-size: 3rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.card {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "slider"
+    "info";
+  background-color: $white;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+
+  &--header {
+    grid-area: header;
+    padding: {
+      bottom: 1rem;
+      left: 1rem;
+    }
+    text-align: left;
+    font-weight: 500;
+  }
+
+  &--date-finished {
+    margin-left: 0.75rem;
+    padding: {
+      block: 0.2rem;
+      inline: 0.5rem;
+    }
+    background-color: $pale-silver-transparent;
+    border-radius: $border-radius;
+  }
+
+  &--info {
+    grid-area: info;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    color: $text;
+  }
+
+  &--box-cta {
+    @include flex-box(space-around, flex-end, wrap);
+    margin-top: 1rem;
+  }
+
+  &--cta {
+    position: relative;
+    margin-block: 0.5rem;
+    padding: 0.7em 2em;
+    text-transform: uppercase;
+    transition: all 500ms ease;
+    z-index: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      background-color: $blue;
+      transition: all 500ms ease;
+      z-index: -1;
+    }
+
+    &__contained {
+      background-color: $blue;
+      color: $white;
+      border: 2px solid $blue;
+      border-radius: $border-radius;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        background-color: $dark-blue;
+        transition: all 500ms ease;
+        z-index: -1;
+        width: 0;
+        height: 100%;
+      }
+
+      &:hover {
+        border: 2px solid $dark-blue;
+
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+
+    &__outline {
+      border: 2px solid $blue;
+      border-radius: $border-radius;
+      color: $dark-blue;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        background-color: $dark-blue;
+        transition: all 500ms ease;
+        z-index: -1;
+        width: 0;
+        height: 100%;
+      }
+
+      &:hover {
+        color: $white;
+        border: 2px solid $dark-blue;
+
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+
+    &__text-only {
+      padding-inline: 0;
+      color: $dark-blue;
+    }
+
+    &__underline {
+      text-decoration-line: underline;
+    }
+  }
+}
+
+.slider {
+  position: relative;
+  grid-area: slider;
+  width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &--box-img {
+    @include flex-box(space-between, center, nowrap);
+    flex-direction: row;
+    width: 200%;
+    transition: all 0.5s ease;
+    transform: translateX(0%);
+  }
+
+  &--img {
+    width: calc(100% / 2);
+    object-fit: cover;
+    object-position: center center;
+    scroll-snap-align: center;
+  }
+}
+
+//490px
+@media (min-width: 30.625em) {
+  .main {
+    display: block;
+    margin: 0 auto;
+    max-width: 450px;
+  }
+}
+
+//928px
+@media (min-width: 58em) {
+  .main {
+    max-width: 1024px;
+    min-height: 100vh;
+  }
+
+  .card {
+    grid-template-rows: auto min-content;
+    grid-template-areas:
+      "slider header header"
+      "slider info info";
+    max-width: 900px;
+    margin: 1rem;
+    border-radius: 4px;
+
+    &--header {
+      padding-top: 1rem;
+    }
+
+    &--info {
+      position: relative;
+      padding-right: 2rem;
+    }
+
+    &--box-cta {
+      position: absolute;
+      bottom: 2rem;
+      left: 1.5rem;
+    }
+
+    &--cta {
+      margin-right: 1rem;
+    }
+  }
+
+  .slider {
+    grid-area: slider;
+    overflow-x: hidden;
+    order: -1;
+
+    &--img {
+      height: 250px;
+      object-fit: cover;
+      border: {
+        top-left-radius: 4px;
+        bottom-left-radius: 4px;
+      }
+    }
+
+    &--box-img {
+      position: relative;
+    }
+
+    &--points {
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      @include flex-box(center, center, nowrap);
+      flex-direction: row;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+
+    &--point {
+      width: 0.75rem;
+      height: 0.75rem;
+      padding: 0.5rem;
+      margin-right: 0.5rem;
+      background-color: $pale-silver-transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0.2;
+    }
+
+    &--point.active {
+      background-color: $blue;
+      opacity: 0.8;
+    }
+  }
+}

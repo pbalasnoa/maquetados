@@ -1,0 +1,158 @@
+@import "../_global";
+@import "../mixins";
+
+// font-family: 'Inter', sans-serif;
+// font-family: 'Lexend Deca', sans-serif;
+
+// -------------------------- */
+// $VARIEBALES /
+// -------------------------- */
+
+$dark-blue: hsl(233, 47%, 7%);
+$blue: hsl(244, 38%, 16%);
+$soft-violet: hsl(277, 64%, 61%);
+$image-overlay: hsla(277, 80%, 38%, 0.5);
+$white: hsl(0, 0%, 100%);
+$transparent-white: hsla(0, 0%, 100%, 0.75);
+$slightly-transparent-white: hsla(0, 0%, 100%, 0.6);
+
+$font-Inter: "Inter", sans-serif;
+$font-Lexend: "Lexend Deca", sans-serif;
+
+body {
+  font-family: $font-Inter;
+  color: $white;
+  background-color: $dark-blue;
+}
+
+.wrapper {
+  @include flex-box(center, center, nowrap);
+  height: 100vh;
+}
+
+.card {
+  @include flex-box(center, center, nowrap);
+  flex-direction: column-reverse;
+  width: 330px;
+  height: auto;
+  margin: 2rem 1rem;
+  background-color: $blue;
+  border-radius: $border-radius;
+
+  &--info {
+    padding: {
+      top: 2rem;
+      bottom: 1.5rem;
+      inline: 1.5rem;
+    }
+  }
+
+  &--title {
+    padding-bottom: 1rem;
+    font: {
+      size: 1.75rem;
+      family: $font-Inter;
+      weight: 700;
+    }
+
+    > span {
+      font-size: 1.75rem;
+      color: $soft-violet;
+    }
+  }
+
+  &--text-description {
+    line-height: 1.6;
+    color: $transparent-white;
+  }
+
+  &--stat {
+    padding-block: 1rem;
+  }
+
+  &--statistical-data {
+    @include flex-box(center, center, nowrap);
+    flex-direction: column;
+    padding-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  &--statistical-legend {
+    padding-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: initial;
+    color: $slightly-transparent-white;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  > aside {
+    width: 100%;
+    height: max-content;
+  }
+
+  &--img {
+    background-image: linear-gradient($image-overlay, $image-overlay),
+      url("../../../public/html/statsCard/img/image-header-mobile.jpg");
+    filter: brightness(90%);
+    background-size: cover;
+    object-fit: cover;
+    object-position: center center;
+    height: 200px;
+    width: 100%;
+    border-top: {
+      left-radius: $border-radius;
+      right-radius: $border-radius;
+    }
+  }
+}
+
+@media (min-width: 58em) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 950px;
+    height: 350px;
+
+    &--info {
+      padding: {
+        block: 2rem;
+        left: 3rem;
+        right: 5rem;
+      }
+      text-align: left;
+    }
+
+    &--title {
+      font-size: 2rem;
+    }
+
+    &--text-description {
+      margin-right: 2rem;
+      font-size: 0.85rem;
+    }
+
+    &--stat {
+      @include flex-box(space-between, center, nowrap);
+      margin-right: 2rem;
+    }
+
+    &--statistical-data {
+      display: block;
+    }
+
+    &--statistical-legend {
+      display: inherit;
+    }
+
+    &--img {
+      height: 350px;
+      border: {
+        top-left-radius: 0;
+        top-right-radius: $border-radius;
+        bottom-right-radius: $border-radius;
+      }
+    }
+  }
+}
