@@ -27,7 +27,14 @@ body {
 
 .wrapper {
   @include flex-box(center, center, nowrap);
-  height: 100vh;
+}
+
+.icon-color {
+  --color-icon: hsl(0, 0%, 100%);
+}
+
+.icon-color:hover {
+  --color-icon: hsl(277, 64%, 61%);
 }
 
 .card {
@@ -109,6 +116,10 @@ body {
 }
 
 @media (min-width: 58em) {
+  .wrapper {
+    height: 90vh;
+  }
+
   .card {
     display: grid;
     grid-template-columns: 1fr 1fr;
