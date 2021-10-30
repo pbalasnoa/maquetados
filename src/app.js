@@ -1,19 +1,15 @@
 function carrouselControl() {
-  const boxImg = document.querySelector(".slider--box-img");
-  const points = document.querySelectorAll(".slider--point");
+  const section = document.querySelector("#exercises-list");
 
-  points.forEach((punto, i) => {
-    punto.addEventListener("click", (event) => {
-      let position = i;
+  section.addEventListener("click", (event) => {
+    if (event.target.nodeName === "SPAN") {
+      const className = event.target.classList[2];
+      const container = event.target.parentNode.children[0];
+
+      let position = className === "slider--point-left" ? 0 : 1;
       let calc = position * -50;
-
-      boxImg.style.transform = `translateX(${calc}%)`;
-
-      points.forEach((punto) => {
-        punto.classList.remove("active");
-      });
-      punto.classList.add("active");
-    });
+      container.style.transform = `translateX(${calc}%)`;
+    }
   });
 }
 
@@ -24,47 +20,69 @@ const renderExercises = (docs) => {
   docs.forEach((doc) => {
     const guide = doc.data();
     const date = guide.finished.toDate();
-    console.log(guide);
+    const guideColor = `background-image: linear-gradient(to bottom,${guide.color[0]},${guide.color[1]},${guide.color[2]}); color:${guide.colorText}`;
+
+    // console.log(guide);
     const article = `
-    <article class="card">
-      <div class="card--header">
-        <h2 class="card--title">${guide.title}</h2>
-        <small class="card--date-finished">${date.toLocaleDateString()}</small>
-      </div>
-       
-          <div class="slider">
-            <a href="${guide.myWork}">
-              <div id="imgs" class="slider--box-img">
+    <article class="card" style="background-color:${guide.color[0]}">       
+      <div class="slider">
+        
+          <div id="imgs" class="slider--box">
                 ${
                   guide.imgs &&
-                  `<img src=${guide.imgs[0]} class="slider--img" alt="vista previa del ejercicio de maquetación ${guide.title}" />
-                  <img src=${guide.imgs[1]} class="slider--img" alt="vista previa del ejercicio de maquetación ${guide.title}" />`
+                  `<picture class="slider--box-img">
+                    <source media="(min-width: 58em)" srcset=${guide.imgs[2]}>
+                    <img src=${guide.imgs[0]} class="slider--img" alt="vista previa del ejercicio de maquetación ${guide.title}" />
+                  </picture>
+                  <picture class="slider--box-img">
+                    <source media="(min-width: 58em)" srcset=${guide.imgs[3]}>
+                    <img src=${guide.imgs[1]} class="slider--img" alt="vista previa del ejercicio de maquetación ${guide.title}" />
+                  </picture>`
                 }
-              </div>
-            </a>
-              <ul class="slider--points">
-                <li class="slider--point active"></li>
-                <li class="slider--point"></li>
-              </ul>
           </div>
         
+            <span class="material-icons slider--point slider--point-left">
+            chevron_left
+            </span>
+            <span class="material-icons slider--point slider--point-right">
+            chevron_right
+            </span>          
+      </div>
+
+      <div class="card--container" style="${guideColor}">
+        <div class="card--header">
+          <h2 class="card--title">${guide.title}</h2>
+            <small class="card--date-finished">${date.toLocaleDateString()}</small>
+        </div>
+        
         <div class="card--info">
-          <p>${guide.description} 
-            <a 
-              href="${guide.originalWorkUrl}" 
-              class="card--cta__text-only card--cta__underline">Ver diseño original
+          <p>${guide.description}
+            <a
+                href="${guide.originalWorkUrl}"
+                target="_blank"
+                style="color:${guide.colorText}"
+                class="card--cta__text-only card--cta__underline">Ir a la publicación
             </a>
           </p>
           <div class="card--box-cta">
-            <a 
-              href="${guide.myWork}" 
-              class="card--cta card--cta__contained">Ver maqueta
+            <a
+                href="${guide.myWork}"
+                target="_blank"
+                style="background-color:${guide.colorAccent}; color:${
+      guide.colorText
+    }"
+                class="card--cta card--cta__contained">Ver maqueta
             </a>
-            <a 
-              href="${guide.myWork}" 
-              class="card--cta card--cta__outline">Ver código
+            <a
+                href="${guide.myWork}"
+                target="_blank"
+                style="border-color:${guide.colorAccent}; color:${
+      guide.colorText
+    }"
+                class="card--cta card--cta__outline">Ver código
             </a>
-        </div
+          </div
+        </div>
       </div>
     </article>
     `;

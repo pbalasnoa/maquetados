@@ -32,6 +32,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 h1 {
@@ -211,7 +212,7 @@ body {
   border-top-right-radius: 8px;
 }
 
-@media (min-width: 928px) {
+@media (min-width: 58em) {
   .card {
     display: -ms-grid;
     display: grid;

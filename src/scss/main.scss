@@ -30,14 +30,25 @@ body {
   font-weight: 700;
 }
 
+.section {
+  @include flex-box(space-around, center, wrap);
+  margin: 0 1.5rem 2rem;
+}
+
 .card {
-  display: grid;
-  grid-template-areas:
-    "header"
-    "slider"
-    "info";
-  background-color: $white;
+  @include flex-box(center, center, wrap);
+  max-width: 600px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+
+  &--container {
+    width: 100%;
+    padding: 1rem;
+    border: {
+      bottom-left-radius: $border-radius;
+      bottom-right-radius: $border-radius;
+    }
+  }
 
   &--header {
     grid-area: header;
@@ -63,7 +74,6 @@ body {
     grid-area: info;
     padding: 0.75rem 1rem;
     text-align: left;
-    color: $text;
   }
 
   &--box-cta {
@@ -79,201 +89,139 @@ body {
     transition: all 500ms ease;
     z-index: 0;
 
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      margin: auto;
-      background-color: $blue;
-      transition: all 500ms ease;
-      z-index: -1;
+    &:hover {
+      box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.4);
+      transform: translateY(-5px);
     }
 
     &__contained {
-      background-color: $blue;
-      color: $white;
-      border: 2px solid $blue;
       border-radius: $border-radius;
-
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        margin: auto;
-        background-color: $dark-blue;
-        transition: all 500ms ease;
-        z-index: -1;
-        width: 0;
-        height: 100%;
-      }
-
-      &:hover {
-        border: 2px solid $dark-blue;
-
-        &::before {
-          width: 100%;
-        }
-      }
     }
 
     &__outline {
-      border: 2px solid $blue;
+      border: 2px solid;
       border-radius: $border-radius;
-      color: $dark-blue;
-
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        margin: auto;
-        background-color: $dark-blue;
-        transition: all 500ms ease;
-        z-index: -1;
-        width: 0;
-        height: 100%;
-      }
-
-      &:hover {
-        color: $white;
-        border: 2px solid $dark-blue;
-
-        &::before {
-          width: 100%;
-        }
-      }
     }
 
     &__text-only {
       padding-inline: 0;
-      color: $dark-blue;
     }
 
     &__underline {
       text-decoration-line: underline;
     }
   }
-}
-
-.slider {
-  position: relative;
-  grid-area: slider;
-  width: 100%;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  &--box-img {
-    @include flex-box(space-between, center, nowrap);
-    flex-direction: row;
-    width: 200%;
-    transition: all 0.5s ease;
-    transform: translateX(0%);
-  }
-
-  &--img {
-    width: calc(100% / 2);
-    object-fit: cover;
-    object-position: center center;
-    scroll-snap-align: center;
-  }
-}
-
-//490px
-@media (min-width: 30.625em) {
-  .main {
-    display: block;
-    margin: 0 auto;
-    max-width: 450px;
-  }
-}
-
-//928px
-@media (min-width: 58em) {
-  .main {
-    max-width: 1024px;
-    min-height: 100vh;
-  }
-
-  .card {
-    grid-template-rows: auto min-content;
-    grid-template-areas:
-      "slider header header"
-      "slider info info";
-    max-width: 900px;
-    margin: 1rem;
-    border-radius: 4px;
-
-    &--header {
-      padding-top: 1rem;
-    }
-
-    &--info {
-      position: relative;
-      padding-right: 2rem;
-    }
-
-    &--box-cta {
-      position: absolute;
-      bottom: 2rem;
-      left: 1.5rem;
-    }
-
-    &--cta {
-      margin-right: 1rem;
-    }
-  }
 
   .slider {
+    position: relative;
     grid-area: slider;
-    overflow-x: hidden;
-    order: -1;
+    width: 100%;
+    border: {
+      top-left-radius: $border-radius;
+      top-right-radius: $border-radius;
+    }
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--box {
+      @include flex-box(space-between, center, nowrap);
+      flex-direction: row;
+      width: 200%;
+      transition: all 0.5s ease;
+      transform: translateX(0%);
+    }
+
+    &--box-img {
+      width: 100%;
+    }
 
     &--img {
-      height: 250px;
+      width: calc(100% / 2);
       object-fit: cover;
+      object-position: center center;
+      scroll-snap-align: center;
       border: {
         top-left-radius: 4px;
         bottom-left-radius: 4px;
       }
     }
 
-    &--box-img {
-      position: relative;
-    }
-
-    &--points {
-      position: absolute;
-      bottom: 8px;
-      left: 0;
-      @include flex-box(center, center, nowrap);
-      flex-direction: row;
-      width: 100%;
-      margin-top: 0.25rem;
-    }
-
     &--point {
-      width: 0.75rem;
-      height: 0.75rem;
       padding: 0.5rem;
       margin-right: 0.5rem;
-      background-color: $pale-silver-transparent;
-      border-radius: 50%;
+      color: $background;
+      font-size: 24px;
+      opacity: 0.7;
       cursor: pointer;
-      opacity: 0.2;
     }
 
-    &--point.active {
-      background-color: $blue;
-      opacity: 0.8;
+    &--point-left {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &--point-right {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  //490px
+  @media (min-width: 30.625em) {
+    .main {
+      display: block;
+      margin: 0 auto;
+      max-width: 450px;
+    }
+  }
+
+  //928px
+  @media (min-width: 58em) {
+    .main {
+      max-width: 1024px;
+      min-height: 100vh;
+    }
+
+    .card {
+      padding: 2rem;
+    }
+
+    .slider {
+      grid-area: slider;
+      overflow-x: hidden;
+      order: -1;
+
+      &--box {
+        position: relative;
+      }
+
+      &--img {
+        width: 100%;
+      }
+
+      &--point {
+        font-size: 48px;
+        cursor: pointer;
+      }
+
+      &--point.active {
+        background-color: $white;
+        opacity: 0.8;
+      }
     }
   }
 }
