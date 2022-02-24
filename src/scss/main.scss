@@ -23,6 +23,10 @@ body {
   background-color: $background;
 }
 
+.main {
+  margin-inline: 1rem;
+}
+
 .main-title {
   padding: 2rem 1rem 2.5rem;
   font-size: 3rem;
@@ -31,14 +35,16 @@ body {
 }
 
 .section {
-  @include flex-box(space-around, center, wrap);
-  margin: 0 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 1.5rem;
 }
 
 .card {
-  @include flex-box(center, center, wrap);
-  max-width: 600px;
-  border-radius: 8px;
+  @include flex-box(center, stretch, wrap);
+  min-width: 300px;
+  margin-bottom: 1.5rem;
+  border-radius: $border-radius;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 
   &--container {
@@ -67,7 +73,6 @@ body {
       inline: 0.5rem;
     }
     background-color: $pale-silver-transparent;
-    border-radius: $border-radius;
   }
 
   &--info {
@@ -95,6 +100,7 @@ body {
     }
 
     &__contained {
+      border: none;
       border-radius: $border-radius;
     }
 
@@ -116,10 +122,6 @@ body {
     position: relative;
     grid-area: slider;
     width: 100%;
-    border: {
-      top-left-radius: $border-radius;
-      top-right-radius: $border-radius;
-    }
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
 
@@ -144,16 +146,11 @@ body {
       object-fit: cover;
       object-position: center center;
       scroll-snap-align: center;
-      border: {
-        top-left-radius: 4px;
-        bottom-left-radius: 4px;
-      }
     }
 
     &--point {
       padding: 0.5rem;
       margin-right: 0.5rem;
-      color: $background;
       font-size: 24px;
       opacity: 0.7;
       cursor: pointer;

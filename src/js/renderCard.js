@@ -1,19 +1,6 @@
-function carrouselControl() {
-  const section = document.querySelector("#exercises-list");
+import { carrouselControl } from "./carrousel.js";
 
-  section.addEventListener("click", (event) => {
-    if (event.target.nodeName === "SPAN") {
-      const className = event.target.classList[2];
-      const container = event.target.parentNode.children[0];
-
-      let position = className === "slider--point-left" ? 0 : 1;
-      let calc = position * -50;
-      container.style.transform = `translateX(${calc}%)`;
-    }
-  });
-}
-
-const renderExercises = (docs) => {
+export const renderCard = (docs) => {
   const exercisesList = document.getElementById("exercises-list");
   const imgs = document.getElementById("imgs");
   let html = "";
@@ -22,7 +9,6 @@ const renderExercises = (docs) => {
     const date = guide.finished.toDate();
     const guideColor = `background-image: linear-gradient(to bottom,${guide.color[0]},${guide.color[1]},${guide.color[2]}); color:${guide.colorText}`;
 
-    // console.log(guide);
     const article = `
     <article class="card" style="background-color:${guide.color[0]}">       
       <div class="slider">
@@ -41,10 +27,18 @@ const renderExercises = (docs) => {
                 }
           </div>
         
-            <span class="material-icons slider--point slider--point-left">
+            <span class="material-icons 
+              slider--point 
+              slider--point-left"
+              style="color:${guide.colorText}"
+              >
             chevron_left
             </span>
-            <span class="material-icons slider--point slider--point-right">
+            <span class="material-icons 
+              slider--point 
+              slider--point-right"
+              style="color:${guide.colorText}"
+              >
             chevron_right
             </span>          
       </div>
@@ -67,7 +61,6 @@ const renderExercises = (docs) => {
           <div class="card--box-cta">
             <a
                 href="${guide.myWork}"
-                target="_blank"
                 style="background-color:${guide.colorAccent}; color:${
       guide.colorText
     }"
@@ -91,9 +84,3 @@ const renderExercises = (docs) => {
   exercisesList.innerHTML = html;
   carrouselControl();
 };
-
-db.collection("practices")
-  .get()
-  .then((snapshot) => {
-    renderExercises(snapshot.docs);
-  });

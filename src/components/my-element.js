@@ -60,6 +60,7 @@ class navigation extends HTMLElement {
           align-items: center;
           text-decoration: none;
           color: var(--color-icon);
+          font-size: 1.75rem;
         }
 
         .pl{
@@ -68,7 +69,7 @@ class navigation extends HTMLElement {
 
         .icon {
           color: var(--color-icon);
-          font-size: 1.8rem
+          font-size: 2rem;
         }
 
       </style>
