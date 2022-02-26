@@ -211,12 +211,12 @@ body {
       from(rgba(115, 19, 174, 0.5)),
       to(rgba(115, 19, 174, 0.5))
     ),
-    url("../html/statsCard/images/image-header-mobile.jpg");
+    url("../projects/statsCard/images/image-header-mobile.jpg");
   background-image: linear-gradient(
       rgba(115, 19, 174, 0.5),
       rgba(115, 19, 174, 0.5)
     ),
-    url("../html/statsCard/images/image-header-mobile.jpg");
+    url("../projects/statsCard/images/image-header-mobile.jpg");
   -webkit-filter: brightness(90%);
   filter: brightness(90%);
   background-size: cover;
