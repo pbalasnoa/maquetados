@@ -2,7 +2,7 @@ import { carrouselControl } from "./carrousel.js";
 
 export const renderCard = (docs) => {
   const exercisesList = document.getElementById("exercises-list");
-  const imgs = document.getElementById("imgs");
+
   let html = "";
   docs.forEach((doc) => {
     const guide = doc.data();

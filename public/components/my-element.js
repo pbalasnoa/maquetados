@@ -2,7 +2,6 @@ class navigation extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.firstUrl = this.getAttribute("firstUrl");
     this.icon = this.getAttribute("icon");
     this.textIcon = this.getAttribute("text-icon");
   }
@@ -17,7 +16,7 @@ class navigation extends HTMLElement {
       <nav>
         <ul>
           <li>
-            <a class="ml" href=${this.firstUrl}>
+            <a class="ml" href=${window.location.origin}>
               <span class="material-icons icon">
                 ${this.icon}
               </span>

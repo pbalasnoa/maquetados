@@ -222,3 +222,61 @@ body {
     }
   }
 }
+
+.infoMessages {
+  @include flex-box(center, flex-start, nowrap);
+  min-height: 100vh;
+  margin-top: 5rem;
+  font-size: 2vw;
+  z-index: 20;
+}
+
+.animated {
+  &--sub-text {
+    position: absolute;
+    left: 50%;
+    font-size: 2vw;
+    transform: translate(-50%, -200%);
+    color: $dark-blue;
+  }
+
+  &--text {
+    position: relative;
+    display: block;
+    font-size: inherit;
+    color: $blue;
+    -webkit-text-stroke-width: 0vw;
+    white-space: nowrap;
+  }
+
+  &--text::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color: $dark-blue;
+    border-right: 2px solid $dark-blue;
+    font-size: 2vw;
+    -webkit-text-stroke-width: 0vw;
+    overflow: hidden;
+    @include animate(animateText, 5s, linear, infinite);
+    @include keyframes(animateText) {
+      0%,
+      10%,
+      100% {
+        width: 0;
+      }
+
+      70%,
+      95% {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
