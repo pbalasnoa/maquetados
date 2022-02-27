@@ -22,25 +22,37 @@ export const renderCard = (docs) => {
                   </picture>
                   <picture class="slider--box-img">
                     <source media="(min-width: 58em)" srcset=${guide.imgs[3]}>
-                    <img src=${guide.imgs[1]} class="slider--img" alt="vista previa del ejercicio de maquetación ${guide.title}" />
+                    <img src=${guide.imgs[1]} class="slider--img slider--aspect" alt="vista previa del ejercicio de maquetación ${guide.title}" />
                   </picture>`
                 }
           </div>
         
             <span class="material-icons 
-              slider--point 
-              slider--point-left"
+              slider--arrow 
+              slider--arrow-left
+              hide
+              "
               style="color:${guide.colorText}"
               >
             chevron_left
             </span>
             <span class="material-icons 
-              slider--point 
-              slider--point-right"
+              slider--arrow 
+              slider--arrow-right"
               style="color:${guide.colorText}"
               >
             chevron_right
-            </span>          
+            </span>     
+
+            <div class="slider--point">
+              <div class="slider--point-left"
+                style="background-color:${guide.colorText}"
+                ></div>
+              <div class="slider--point-right"
+                style="background-color:${guide.color[2]}"
+                ></div>
+            </div>
+
       </div>
 
       <div class="card--container" style="${guideColor}">
@@ -61,17 +73,15 @@ export const renderCard = (docs) => {
           <div class="card--box-cta">
             <a
                 href="${guide.myWork}"
-                style="background-color:${guide.colorAccent}; color:${
-      guide.colorText
-    }"
+                style="background-color:${guide.colorAccent}; 
+                color:${guide.colorText}"
                 class="card--cta card--cta__contained">Ver maqueta
             </a>
             <a
-                href="${guide.myWork}"
+                href="${guide.code}"
                 target="_blank"
-                style="border-color:${guide.colorAccent}; color:${
-      guide.colorText
-    }"
+                style="border-color:${guide.colorAccent}; 
+                color:${guide.colorText}"
                 class="card--cta card--cta__outline">Ver código
             </a>
           </div

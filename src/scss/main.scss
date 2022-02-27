@@ -36,13 +36,25 @@ body {
 
 .section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem 1.5rem;
+  justify-items: center;
+
+  //700px
+  @media (min-width: 43em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  //928px
+  @media (min-width: 58em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
   @include flex-box(center, stretch, wrap);
   min-width: 300px;
+  // max-width: 420px;
   margin-bottom: 1.5rem;
   border-radius: $border-radius;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
@@ -125,6 +137,10 @@ body {
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
 
+    &--aspect {
+      aspect-ratio: 1/2;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -149,75 +165,72 @@ body {
     }
 
     &--point {
-      padding: 0.5rem;
-      margin-right: 0.5rem;
-      font-size: 24px;
-      opacity: 0.7;
-      cursor: pointer;
+      display: none;
     }
 
-    &--point-left {
-      position: absolute;
-      top: 50%;
-      left: 16px;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    &--point-right {
-      position: absolute;
-      top: 50%;
-      right: 16px;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  //490px
-  @media (min-width: 30.625em) {
-    .main {
-      display: block;
-      margin: 0 auto;
-      max-width: 450px;
-    }
-  }
-
-  //928px
-  @media (min-width: 58em) {
-    .main {
-      max-width: 1024px;
-      min-height: 100vh;
-    }
-
-    .card {
-      padding: 2rem;
-    }
-
-    .slider {
-      grid-area: slider;
-      overflow-x: hidden;
-      order: -1;
-
-      &--box {
-        position: relative;
+    //428px
+    @media (min-width: 26.75em) {
+      &--aspect {
+        aspect-ratio: auto;
       }
 
-      &--img {
-        width: 100%;
-      }
-
-      &--point {
-        font-size: 48px;
+      &--arrow {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+        font-size: 24px;
+        opacity: 0.7;
         cursor: pointer;
       }
 
-      &--point.active {
+      &--arrow-left {
+        position: absolute;
+        top: 50%;
+        left: 16px;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &--arrow-right {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &--arrow.active {
         background-color: $white;
         opacity: 0.8;
+      }
+
+      &--point {
+        @include flex-box(center, center, wrap);
+        height: 20px;
+        opacity: 0.7;
+      }
+
+      &--point-left {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      &--point-right {
+        width: 10px;
+        height: 10px;
+        margin-left: 4px;
+        border-radius: 50%;
+      }
+    }
+
+    //928px
+    @media (min-width: 58em) {
+      &--img {
+        width: 100%;
       }
     }
   }
