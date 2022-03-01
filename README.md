@@ -6,9 +6,9 @@ Web diseñada para practicar HTML, CSS y un poco de JS vanilla. La idea es diver
 
 Ir mejorando progresivamente las habilidades de maquetación con proyectos de diferentes niveles de dificultad.
 
-[DEMO Maquetados](https://maquetacion-in.vercel.app/ "Web Maquetación")
+[DEMO Maquetados](https://maquetados-in.vercel.app/ "Web Maquetados")
 
-![Vista previa de Maquetados]( "Vista previa de AppTask")
+![Vista previa de Maquetados](https://github.com/pbalasnoa/maquetados/blob/main/src/assets/desktop.PNG "Vista previa de Maquetados")
 
 ## Tecnologías
 
