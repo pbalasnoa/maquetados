@@ -1,6 +1,6 @@
 # Maquetados [![Status: pause](https://img.shields.io/badge/Status-pause-yellow)]() [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 
-Es una web diseñada para practicar HTML, CSS y un poco de JS vanilla. La idea es divertirse y llorar un poco por CSS.
+Web diseñada para practicar HTML, CSS y un poco de JS vanilla. La idea es divertirse y llorar un poco por CSS.
 
 ### :fire: Motivación
 
@@ -8,7 +8,7 @@ Ir mejorando progresivamente las habilidades de maquetación con proyectos de di
 
 [DEMO Maquetados](https://maquetacion-in.vercel.app/ "Web Maquetación")
 
-![Vista previa de AppTask](https://firebasestorage.googleapis.com/v0/b/to-do-list-84dd6.appspot.com/o/readme%2Fpreview.png?alt=media&token=2839eb36-1da0-47dc-84ab-65a1b8c7c6ed "Vista previa de AppTask")
+![Vista previa de Maquetados]( "Vista previa de AppTask")
 
 ## Tecnologías
 

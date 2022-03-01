@@ -1,6 +1,6 @@
 import { renderCard } from "./js/renderCard.js";
 import { loader, error, NotFoundData } from "./js/infoMessages.js";
-import { config } from "../src/config.js";
+import { config } from "./js/config.js";
 
 var firebaseConfig = {
   apiKey: config.firebaseConnect.APIKEY,

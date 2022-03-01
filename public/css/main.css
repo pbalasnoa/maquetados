@@ -96,6 +96,20 @@ body {
   background-color: #fafafa;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: rgba(206, 195, 193, 0.4);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(8, 20, 48, 0.5);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #081430;
+}
+
 .main {
   margin-inline: 1rem;
 }

@@ -12,8 +12,10 @@ $blue: #3249bf;
 $background: #fafafa;
 $white: #fff;
 $pale-silver-transparent: rgba(206, 195, 193, 0.4);
+$scrollbar-thumb: rgba(8, 20, 48, 0.5);
 
 $font-Karla: "Karla", sans-serif;
+// $border-radius-scroll: 4px;
 
 body {
   font-family: $font-Karla;
@@ -21,6 +23,20 @@ body {
   color: $dark-blue;
   width: 100%;
   background-color: $background;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: $pale-silver-transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: $dark-blue;
 }
 
 .main {
